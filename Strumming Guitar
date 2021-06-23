@@ -1,6 +1,5 @@
 import mido
 from time import sleep
-from random import randint
 import enum
 
 class chord_type(enum.Enum):
@@ -33,8 +32,6 @@ G_sharp=68
 
 outport = mido.open_output()            #Play all the messages written in mido
 
-tempo=60
-
 def note(note, velocity=64, time=2):
     '''
     Sends a message to mido to play a note
@@ -60,7 +57,7 @@ def pause():
 
     :return:#Pausing for random time to make it sound more natural
     '''
-    sleep(randint(0,2) * .00005)
+    sleep(.01)
 
 def Chord(root,duration,is_natural_sounding,is_down,chord_type):
     '''
@@ -218,14 +215,12 @@ def strum(root,chord_type,bpm,is_natural_sounding,strum):
         Chord(root, duration, is_natural_sounding, True, chord_type)
 
 while True:
-
-    duration=2
-    Chord(G, duration ,False, True, chord_type.Major)
+    duration = 2
+    Chord(G, duration, False, True, chord_type.Major)
     Chord(E, duration, False, True, chord_type.Minor)
     Chord(C, duration, False, True, chord_type.Major)
     Chord(D, duration, False, True, chord_type.Major)
-
-    bpm = 70
+    bpm=60
     strum(G, chord_type.Major, bpm, False, strum_pattern.DDU)
     strum(C, chord_type.Major, bpm, False, strum_pattern.DDU)
     strum(D, chord_type.Major, bpm, False, strum_pattern.DDU)
@@ -241,4 +236,4 @@ while True:
     strum(C, chord_type.Major, bpm, True, strum_pattern.DDUUDU)
     strum(D, chord_type.Major, bpm, True, strum_pattern.DDUUDU)
 
-    Chord(G, duration , False, True, chord_type.Major)
+    Chord(G, duration, False, True, chord_type.Major)
