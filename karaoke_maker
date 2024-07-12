@@ -6,7 +6,7 @@ from spleeter.separator import Separator
 import os
 
 def filter(input_path,karaoke=True):
-    input_path="/content"+"/input_path"
+    input_path="/content/"+input_path
     out_path="/content/filtered"
     separator = Separator('spleeter:2stems')  # Using a pre-trained model for vocal/instrument separation
     separator.separate_to_file(input_path, out_path)
@@ -21,5 +21,4 @@ def filter(input_path,karaoke=True):
     audio.export("/content/output.mp3", format="mp3")
     files.download("/content/output.mp3")   #Downloads the mp3 file
 
-filter("input.mp3",True)
-
+filter("perfect.mp3",True)
