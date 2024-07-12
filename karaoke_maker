@@ -1,6 +1,5 @@
-!pip install spleeter
 !pip install pydub
-
+!pip install spleeter
 
 from google.colab import files
 from pydub import AudioSegment
