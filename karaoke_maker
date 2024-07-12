@@ -22,4 +22,4 @@ def filter(input_path,karaoke=True):
     audio.export("/content/output.mp3", format="mp3")
     files.download("/content/output.mp3")   #Downloads the mp3 file
 
-filter("perfect.mp3",True)
+filter("input.mp3",True)
