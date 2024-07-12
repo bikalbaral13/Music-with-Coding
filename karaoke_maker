@@ -1,1 +1,25 @@
-yes
+!pip install pytube 
+!pip install spleeter
+!pip install pydub
+from google.colab import files
+from pydub import AudioSegment
+from spleeter.separator import Separator
+import os
+
+def filter(input_path,karaoke=True):
+    out_path="/content/filtered"
+    separator = Separator('spleeter:2stems')  # Using a pre-trained model for vocal/instrument separation
+    separator.separate_to_file(input_path, out_path)
+    file_name=os.path.splitext(os.path.basename(input_path))[0]
+   
+    if karaoke==True :
+      audio = AudioSegment.from_wav("/content/filtered/"+file_name+"/accompaniment.wav")
+    else:
+      audio="/content/filtered/"+file_name+"/vocals.wav"
+    
+    audio.export("/content/output.mp3", format="mp3")
+    files.download("/content/output.mp3")
+
+
+filter("/content/input.mp3",True)
+
